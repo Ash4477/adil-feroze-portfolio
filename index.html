@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Adil Feroze Portfolio</title>
+<meta name="color-scheme" content="light dark">
+<meta name="description" content="Adil Feroze is a full-stack product engineer in Islamabad building React, Next.js, TypeScript and PostgreSQL products.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap">
+<style>
+/* Layout: full-bleed colour bands, one per section, with ruled lists inside. The one loud thing is the hero tile artwork and the stretched Archivo display type. */
+:root{
+  --paper:#faf8ff;--ink:#2b1458;--ink-soft:#4a3778;
+  --lilac:#cdbdff;--lemon:#f4e04d;--teal:#0f9d8a;--plum:#2b1458;--deep:#2b1458;
+  --on-band:#2b1458;--on-deep:#faf8ff;--rule:#2b1458;
+  --font:Archivo,"Arial Narrow",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --gx-l:max(16px,env(safe-area-inset-left,0px));--gx-r:max(16px,env(safe-area-inset-right,0px));
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#170d33;--ink:#f3efff;--ink-soft:#c9bfe6;--deep:#0e0722;--rule:#f3efff;color-scheme:dark}}
+:root[data-theme="dark"]{--paper:#170d33;--ink:#f3efff;--ink-soft:#c9bfe6;--deep:#0e0722;--rule:#f3efff;color-scheme:dark}
+*{box-sizing:border-box;margin:0}
+html{scroll-padding-top:70px}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+body{background:var(--paper);color:var(--ink);font:400 clamp(16px,1.3vw,18px)/1.6 var(--font);font-size-adjust:from-font;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--paper);z-index:30}
+a{color:inherit}
+:focus-visible{outline:3px solid currentColor;outline-offset:3px}
+::selection{background:var(--lemon);color:var(--plum)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+[id]{scroll-margin-top:70px}
+
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--paper);border-bottom:2px solid var(--rule);padding-block:12px;padding-left:var(--gx-l);padding-right:var(--gx-r);display:flex;justify-content:space-between;align-items:center;gap:20px}
+header>a{font:800 20px/1 var(--font);font-variation-settings:"wdth" 110;text-decoration:none;white-space:nowrap}
+nav{display:flex;gap:4px 22px;overflow-x:auto;scrollbar-width:none;font-weight:600;font-size:15px;min-width:0}
+nav a{text-decoration:none;padding:6px 0;white-space:nowrap}
+nav a:hover{text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:2px}
+
+.band{padding-block:clamp(56px,9vw,120px);padding-left:var(--gx-l);padding-right:var(--gx-r)}
+.in{max-width:1180px;margin:0 auto}
+.b-lilac{background:var(--lilac);color:var(--on-band)}
+.b-lemon{background:var(--lemon);color:var(--on-band)}
+.b-teal{background:var(--teal);color:var(--on-band)}
+.b-deep{background:var(--deep);color:var(--on-deep)}
+h1{font:900 clamp(48px,9.4vw,140px)/.88 var(--font);font-variation-settings:"wdth" 125;letter-spacing:-.02em}
+h1 span{display:block}
+h2{font:800 clamp(38px,6.2vw,80px)/.95 var(--font);font-variation-settings:"wdth" 78;letter-spacing:-.01em;margin-bottom:clamp(24px,4vw,44px);text-wrap:balance}
+h3{font-weight:800}
+p{max-width:62ch}
+p+p{margin-top:14px}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.25fr 1fr;gap:clamp(28px,5vw,64px);align-items:center}
+.hero>*{min-width:0}
+.lede{font-size:clamp(19px,2vw,25px);line-height:1.35;margin-top:28px;max-width:34ch}
+.sub{margin-top:14px;font-size:15.5px}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.btn{display:inline-block;font:700 16px/1 var(--font);padding:14px 24px;border-radius:99px;border:2px solid currentColor;text-decoration:none;cursor:pointer;background:none;color:inherit}
+.btn.fill{background:var(--plum);border-color:var(--plum);color:#faf8ff}
+.btn:hover{text-decoration:underline;text-underline-offset:4px}
+.stage{position:relative;max-width:100%}
+.art{display:block;width:100%;border:0;padding:0;background:none;cursor:pointer;color:inherit}
+.art svg{display:block;width:100%;height:auto;aspect-ratio:1}
+.stage small{display:block;margin-top:10px;font-size:14px}
+.sticker{position:absolute;right:-6px;top:-26px;width:clamp(96px,12vw,132px);pointer-events:none}
+.sticker text{font:700 15.5px var(--font);fill:#2b1458}
+@media (prefers-reduced-motion:no-preference){
+  @keyframes pop{from{scale:0;opacity:0}}
+  .art .tile{transform-box:fill-box;transform-origin:center;animation:pop .55s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i) * 40ms)}
+  @supports (animation-timeline:scroll()){
+    @keyframes spin{to{rotate:720deg}}
+    .sticker{animation:spin auto linear both;animation-timeline:scroll(root)}
+  }
+}
+@media(max-width:820px){.hero{grid-template-columns:1fr}.stage{max-width:420px}}
+.plum{fill:#2b1458}.lilac{fill:#cdbdff}.lemon{fill:#f4e04d}.teal{fill:#0f9d8a}.white{fill:#faf8ff}
+
+/* about */
+.about{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,72px)}
+.about>*{min-width:0}
+.big-say{font:800 clamp(28px,4vw,48px)/1.08 var(--font);font-variation-settings:"wdth" 82;text-wrap:balance}
+.edu{margin-top:28px;border-top:2px solid var(--rule);padding-top:16px}
+.edu strong{display:block;font-size:18px}
+@media(max-width:820px){.about{grid-template-columns:1fr}}
+
+/* experience */
+.role{display:grid;grid-template-columns:minmax(130px,210px) 1fr;gap:10px clamp(20px,4vw,48px);padding-block:34px;border-top:2px solid color-mix(in srgb,var(--on-deep) 40%,transparent)}
+.role>*{min-width:0}
+.when{font:800 clamp(24px,3vw,34px)/1.05 var(--font);font-variation-settings:"wdth" 80}
+.role h3{font-size:clamp(22px,2.6vw,30px);line-height:1.15}
+.org{color:var(--lemon);font-weight:600;margin:2px 0 14px}
+.role ul{padding-left:1.15em;display:grid;gap:8px;max-width:68ch}
+.role li::marker{color:var(--lemon)}
+@media(max-width:700px){.role{grid-template-columns:1fr}}
+
+/* projects */
+.filters{border:0;padding:0;display:flex;flex-wrap:wrap;gap:10px;margin-bottom:12px;min-width:0}
+.filters label{position:relative;font-weight:700;font-size:15px;padding:8px 18px;border:2px solid var(--rule);border-radius:99px;cursor:pointer}
+.filters input{position:absolute;opacity:0;inset:0;cursor:pointer}
+.filters label:has(input:checked){background:var(--ink);color:var(--paper)}
+.filters label:has(input:focus-visible){outline:3px solid currentColor;outline-offset:3px}
+#count{font-size:14.5px;margin-bottom:26px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,250px),1fr));gap:clamp(28px,4vw,48px) clamp(18px,2.4vw,30px);grid-auto-flow:dense}
+.proj{display:block;min-width:0;text-align:left;font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+.proj.lg{grid-column:span 2}
+.cover{aspect-ratio:4/3;overflow:hidden;display:block;max-width:100%;background:var(--lilac)}
+.proj.lg .cover{aspect-ratio:8/3.9}
+.cover svg{display:block;width:100%;height:100%}
+.proj h3{font-size:22px;line-height:1.15;margin-top:12px}
+.proj:hover h3,.proj:focus-visible h3{text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:2px}
+.proj .meta{display:block;font-size:14px;font-weight:600;margin-top:2px;color:var(--ink-soft)}
+.proj p{font-size:15.5px;margin-top:6px}
+@media(max-width:560px){.proj.lg{grid-column:auto}.proj.lg .cover{aspect-ratio:4/3}}
+#projects:has(#f-work:checked) .proj:not(.t-work),
+#projects:has(#f-web:checked) .proj:not(.t-web),
+#projects:has(#f-mobile:checked) .proj:not(.t-mobile),
+#projects:has(#f-ai:checked) .proj:not(.t-ai),
+#projects:has(#f-backend:checked) .proj:not(.t-backend),
+#projects:has(#f-devops:checked) .proj:not(.t-devops),
+#projects:has(#f-games:checked) .proj:not(.t-games),
+#projects:has(#f-learning:checked) .proj:not(.t-learning){display:none}
+
+/* archive */
+.archive{margin-top:clamp(48px,7vw,88px)}
+.archive h3{font:800 clamp(28px,4vw,44px)/1 var(--font);font-variation-settings:"wdth" 82;margin-bottom:10px}
+.archive>p{margin-bottom:22px}
+details.grp{border-top:2px solid var(--rule)}
+details.grp:last-of-type{border-bottom:2px solid var(--rule)}
+details.grp summary{display:flex;justify-content:space-between;gap:16px;align-items:baseline;padding-block:16px;cursor:pointer;list-style:none;font-weight:800;font-size:19px}
+details.grp summary::-webkit-details-marker{display:none}
+details.grp summary::after{content:"+";font-weight:600;font-size:24px;line-height:1;margin-left:auto;padding-left:12px}
+details.grp[open] summary::after{content:"\2212"}
+details.grp summary .n{font-weight:600;font-size:14px;color:var(--ink-soft);margin-left:10px}
+.gnote{font-size:15px;color:var(--ink-soft);margin:0 0 14px}
+.repos{list-style:none;padding:0 0 22px;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:2px 28px}
+.repos li{display:flex;justify-content:space-between;gap:12px;padding-block:7px;border-bottom:1px solid color-mix(in srgb,var(--rule) 25%,transparent);min-width:0}
+.repos a{min-width:0;overflow-wrap:anywhere;font-weight:600}
+.repos span{font-size:13.5px;color:var(--ink-soft);white-space:nowrap;font-variant-numeric:tabular-nums}
+.more{margin-top:34px;font-weight:600}
+
+/* dialog */
+dialog{width:min(760px,calc(100% - 24px));max-height:calc(100dvh - 24px);margin:auto;padding:0;border:3px solid var(--rule);background:var(--paper);color:var(--ink);overflow:auto}
+dialog:modal{overscroll-behavior:contain}
+.dcover{display:block;height:clamp(110px,22vw,170px);background:var(--lilac)}
+.dcover svg{display:block;width:100%;height:100%}
+.dbody{padding:clamp(18px,3vw,30px)}
+.dhead{display:flex;justify-content:space-between;gap:16px;align-items:flex-start}
+.dhead h3{font:800 clamp(28px,4vw,40px)/1.05 var(--font);font-variation-settings:"wdth" 85}
+.dmeta{font-weight:600;margin:6px 0 14px}
+.dbody ul{padding-left:1.15em;display:grid;gap:8px;margin-top:14px}
+.dbody li::marker{color:var(--teal)}
+.stack{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.stack span{font-size:14px;font-weight:600;padding:3px 12px;border:2px solid var(--rule);border-radius:99px}
+.dlinks{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.dlinks .btn.fill{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.note{margin-top:20px;font-size:14.5px;color:var(--ink-soft)}
+dialog[open]{opacity:1;transform:none;
+  @starting-style{opacity:0;transform:translateY(24px)}}
+dialog{opacity:0;transform:translateY(24px);transition-property:opacity,transform,display,overlay;transition-duration:.28s;transition-timing-function:ease-out;transition-behavior:allow-discrete}
+dialog::backdrop{background:rgba(23,8,60,0);overflow:hidden;overscroll-behavior:contain;transition-property:background-color,display,overlay;transition-duration:.28s;transition-behavior:allow-discrete}
+dialog[open]::backdrop{background:rgba(23,8,60,.6);
+  @starting-style{background:rgba(23,8,60,0)}}
+@media (prefers-reduced-motion:reduce){dialog{transform:none;transition-duration:.1s}dialog[open]{@starting-style{transform:none}}}
+
+/* skills + contact */
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,270px),1fr));gap:30px clamp(24px,4vw,56px)}
+.skills>*{min-width:0}
+.skills h3{font-size:20px;border-top:3px solid var(--on-band);padding-top:10px;margin-bottom:8px}
+.skills p{font-weight:600;font-size:17px}
+.mail{display:block;font:900 clamp(26px,6.6vw,96px)/1 var(--font);font-variation-settings:"wdth" 100;letter-spacing:-.02em;text-decoration:none;overflow-wrap:anywhere;border-bottom:4px solid var(--on-band);padding-bottom:10px;user-select:all}
+.mail:hover{text-decoration:underline;text-underline-offset:8px}
+.mailrow{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:22px}
+.elsewhere{display:flex;flex-wrap:wrap;gap:8px 28px;margin-top:28px;font-weight:700;font-size:18px}
+footer{padding-top:22px;padding-bottom:calc(26px + env(safe-area-inset-bottom,0px));padding-left:var(--gx-l);padding-right:var(--gx-r);font-size:14.5px}
+@media (forced-colors:active){header,.filters label,.btn,.stack span,details.grp{border-color:CanvasText}}
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+</style>
+</head>
+<body>
+<header>
+  <a href="#top">Adil Feroze</a>
+  <nav aria-label="Sections"><a href="#about">About</a><a href="#experience">Experience</a><a href="#projects">Projects</a><a href="#archive">All repos</a><a href="#skills">Skills</a><a href="#contact">Contact</a></nav>
+</header>
+
+<main id="top">
+<section class="band b-lilac">
+  <div class="in hero">
+    <div>
+      <h1><span>Adil</span><span>Feroze</span></h1>
+      <p class="lede">Full-stack product engineer in Islamabad. I ship React, Next.js and TypeScript features from the interface down to the PostgreSQL behind it, for a platform with 2,000+ active users.</p>
+      <p class="sub">Associate Software Engineer at Devsinc. BS in Computer Science, CGPA 3.61.</p>
+      <div class="cta"><a class="btn fill" href="#projects">See my projects</a><a class="btn" href="#contact">Get in touch</a></div>
+    </div>
+    <div class="stage">
+      <svg class="sticker" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="60" fill="#f4e04d"/><path id="ring" d="M60 60m-42 0a42 42 0 1 1 84 0a42 42 0 1 1-84 0" fill="none"/><text><textPath href="#ring" textLength="260">Open to full-stack roles, Islamabad or remote.</textPath></text></svg>
+      <button class="art" id="heroArt" type="button" aria-label="Reshuffle the tile artwork"></button>
+      <small>Tap the tiles to reshuffle them.</small>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="about">
+  <div class="in about">
+    <p class="big-say">I like the parts of a product that have to be right: the money, the permissions, and the message that arrives on time.</p>
+    <div>
+      <p>I’m a full-stack engineer at Devsinc, where I own features end to end on BB Edu, a marketplace that staffs educators. That means React and React Native on the front, TypeScript services and Supabase Edge Functions in the middle, and PostgreSQL underneath, with tests, CI/CD and on-call included.</p>
+      <p>Before that I built MERN and Next.js apps for clients at Elite Fusion, and sharpened the habits (Git workflows, code review, sprints) in the Bytewise fellowship. My final year project, Secure Nest, grew into a Next.js admin dashboard, a Flutter app and an Express backend, with computer vision and generative AI on top.</p>
+      <p>Right now I’m learning system design, GenAI and microservices, plus beginner Japanese. Away from the keyboard it’s story-based games, CS2 and FIFA.</p>
+      <div class="edu"><strong>BS in Computer Science, minor in Software Engineering</strong>COMSATS University Islamabad, graduated Jan 2026, CGPA 3.61. Two Merit Certificates for semester excellence, and Programming Team Lead at the Google Developers Society. 100+ LeetCode problems solved.</div>
+    </div>
+  </div>
+</section>
+
+<section class="band b-deep" id="experience">
+  <div class="in">
+    <h2>Experience</h2>
+    <article class="role">
+      <div class="when">Nov 2025<br>to now</div>
+      <div><h3>Associate Software Engineer</h3><p class="org">Devsinc, Islamabad</p>
+        <ul>
+          <li>Own features end to end on BB Edu, a two-sided B2B educator staffing marketplace serving 2,000+ active users, across Next.js and React Native (Expo) apps, TypeScript services and Supabase Edge Functions.</li>
+          <li>Built concurrency-safe wallet and billing services in PostgreSQL, using transaction locks to remove race conditions in simultaneous budget deductions and claim verifications.</li>
+          <li>Cut API and UI latency by 35–50% on assignment feeds with 10,000+ records by redesigning multi-table queries, adding pagination and writing indexed PL/pgSQL stored procedures.</li>
+          <li>Built webhook-driven pipelines for Twilio SMS, Resend email and Expo push notifications (claim latency down about 30%), plus cron jobs that save 5+ hours of manual work a week.</li>
+          <li>Refactored Row-Level Security policies across 20+ views and tables for multi-tenant isolation, and built payroll and invoicing with seniority tiers, surge multipliers and weekly ledger exports.</li>
+          <li>Turn product requirements into tickets, lead technical milestones, keep test coverage above 85% (Jest, React Testing Library, Deno), and handle on-call incidents with automated CI/CD deployments.</li>
+        </ul></div>
+    </article>
+    <article class="role">
+      <div class="when">Aug 2025<br>to Nov 2025</div>
+      <div><h3>Full-Stack Developer</h3><p class="org">Elite Fusion (Pvt) Ltd, Islamabad</p>
+        <ul>
+          <li>Built MERN and Next.js applications for 5+ clients, from responsive UI to REST API integration, reducing load times by 25%.</li>
+          <li>Enforced code quality through modular architecture, Git workflows and CI/CD, decreasing post-deployment bugs by 20%.</li>
+          <li>Delivered features across Agile sprints with a 95% on-time completion rate.</li>
+        </ul></div>
+    </article>
+    <article class="role">
+      <div class="when">Mar 2025<br>to Sep 2025</div>
+      <div><h3>Software Engineering Fellow</h3><p class="org">Bytewise Ltd / Dev Weekends, remote</p>
+        <ul>
+          <li>Built a multivendor MERN e-commerce platform (React, Redux, TanStack Query, Express.js, MongoDB) with admin, vendor and customer roles, Stripe and PayPal checkout, and AWS deployment through GitHub Actions.</li>
+          <li>Named a Top Performer (Bronze Fellow) among 30+ peers, solved 100+ LeetCode problems and took part in peer code reviews.</li>
+        </ul></div>
+    </article>
+  </div>
+</section>
+
+<section class="band" id="projects">
+  <div class="in">
+    <h2>Projects</h2>
+    <fieldset class="filters"><legend class="sr">Filter projects</legend>
+      <label><input type="radio" name="f" id="f-all" checked>All</label>
+      <label><input type="radio" name="f" id="f-work">Work</label>
+      <label><input type="radio" name="f" id="f-web">Web</label>
+      <label><input type="radio" name="f" id="f-mobile">Mobile</label>
+      <label><input type="radio" name="f" id="f-ai">AI</label>
+      <label><input type="radio" name="f" id="f-backend">Backend</label>
+      <label><input type="radio" name="f" id="f-devops">DevOps</label>
+      <label><input type="radio" name="f" id="f-games">Games</label>
+      <label><input type="radio" name="f" id="f-learning">Learning</label>
+    </fieldset>
+    <p id="count" role="status"></p>
+    <div class="grid" id="grid">
+      <button class="proj lg t-work t-web t-mobile t-backend" type="button" data-dlg="d-bb-edu"><span class="cover" data-seed="BB Edu" data-c="8" data-r="4"></span><h3>BB Edu</h3><span class="meta">Work at Devsinc, Nov 2025 to now</span><p>A two-sided B2B marketplace that staffs educators, used by 2,000+ people.</p></button>
+      <button class="proj lg t-web t-mobile t-ai t-backend" type="button" data-dlg="d-secure-nest"><span class="cover" data-seed="Secure Nest" data-c="8" data-r="4"></span><h3>Secure Nest</h3><span class="meta">Final year project, COMSATS, Nov 2024 to Dec 2025</span><p>A smart residential community platform: an admin dashboard, a mobile app and a real-time backend.</p></button>
+      <button class="proj lg t-web t-backend t-devops" type="button" data-dlg="d-multivendor"><span class="cover" data-seed="Multivendor e-commerce" data-c="8" data-r="4"></span><h3>Multivendor e-commerce</h3><span class="meta">Full-stack project, 2025</span><p>A Dockerized marketplace with vendors, real-time updates and two payment gateways.</p></button>
+      <button class="proj t-web t-backend" type="button" data-dlg="d-log-analyzer"><span class="cover" data-seed="Log Analyzer" data-c="4" data-r="3"></span><h3>Log Analyzer</h3><span class="meta">Tooling project, May 2026</span><p>A command-line log parser and a dashboard for what it finds.</p></button>
+      <button class="proj t-ai t-backend" type="button" data-dlg="d-scholar-app"><span class="cover" data-seed="Scholar App backend" data-c="4" data-r="3"></span><h3>Scholar App backend</h3><span class="meta">Collaboration, 2026</span><p>A Flask API that predicts admissions and matches students to scholarships.</p></button>
+      <button class="proj t-work t-web" type="button" data-dlg="d-client-builds"><span class="cover" data-seed="Client builds" data-c="4" data-r="3"></span><h3>Client builds</h3><span class="meta">Work at Elite Fusion, Aug to Nov 2025</span><p>MERN and Next.js applications for 5+ clients.</p></button>
+      <button class="proj t-web t-learning" type="button" data-dlg="d-bytewise"><span class="cover" data-seed="Bytewise Fellowship repo" data-c="4" data-r="3"></span><h3>Bytewise Fellowship repo</h3><span class="meta">MERN track, Mar to Sep 2025</span><p>Every task and project from the MERN track.</p></button>
+      <button class="proj t-backend t-learning" type="button" data-dlg="d-taskmanager"><span class="cover" data-seed="Task Manager" data-c="4" data-r="3"></span><h3>Task Manager</h3><span class="meta">Spring Boot, May 2026</span><p>A small Spring Boot project with a Task entity and controller.</p></button>
+      <button class="proj t-learning" type="button" data-dlg="d-leetcode"><span class="cover" data-seed="LeetCode in Java" data-c="4" data-r="3"></span><h3>LeetCode in Java</h3><span class="meta">Interview practice, 2024 to 2026</span><p>Solutions kept one folder per problem.</p></button>
+      <button class="proj t-devops t-learning" type="button" data-dlg="d-devops"><span class="cover" data-seed="DevOps coursework" data-c="4" data-r="3"></span><h3>DevOps coursework</h3><span class="meta">Assignments, 2025</span><p>Three university DevOps assignments.</p></button>
+      <button class="proj t-games t-backend" type="button" data-dlg="d-pokemon"><span class="cover" data-seed="Pokémon game server" data-c="4" data-r="3"></span><h3>Pokémon game server</h3><span class="meta">Node.js, 2025</span><p>A small Node.js server for a Pokémon game, with a Dockerfile.</p></button>
+      <button class="proj t-web t-learning" type="button" data-dlg="d-odin"><span class="cover" data-seed="The Odin Project path" data-c="4" data-r="3"></span><h3>The Odin Project path</h3><span class="meta">Web fundamentals, 2024 to 2025</span><p>22 repositories of coursework, from a calculator to a shopping cart with its own backend.</p></button>
+      <button class="proj t-games t-learning" type="button" data-dlg="d-java-apps"><span class="cover" data-seed="Java desktop apps" data-c="4" data-r="3"></span><h3>Java desktop apps</h3><span class="meta">Java, 2023 to 2024</span><p>Games and small management apps with Java GUIs.</p></button>
+      <button class="proj t-games t-learning" type="button" data-dlg="d-tictactoe"><span class="cover" data-seed="Unbeatable Tic-Tac-Toe" data-c="4" data-r="3"></span><h3>Unbeatable Tic-Tac-Toe</h3><span class="meta">Python, my first project, 2022</span><p>My very first coding project, with a multiplayer mode and an unbeatable mode.</p></button>
+      <button class="proj t-mobile t-learning" type="button" data-dlg="d-rust-flutter"><span class="cover" data-seed="Rust and Flutter practice" data-c="4" data-r="3"></span><h3>Rust and Flutter practice</h3><span class="meta">Learning, 2023 to 2025</span><p>A Rust bootcamp, a Rust inventory system and Flutter learning repos.</p></button>
+      <button class="proj t-web t-learning" type="button" data-dlg="d-early-web"><span class="cover" data-seed="Early web projects" data-c="4" data-r="3"></span><h3>Early web projects</h3><span class="meta">HTML, CSS and JavaScript, 2024</span><p>Landing pages, a survey form, a tribute page and a palindrome checker.</p></button>
+    </div>
+
+    <div class="archive" id="archive">
+      <h3>Every repository, listed</h3>
+      <p>73 public repositories, grouped by what they are. The year is when each was last pushed. Open a group to see its repositories.</p>
+      <details class="grp"><summary><span>Secure Nest<span class="n">3</span></span></summary><p class="gnote">The final year project, split across three repositories.</p><ul class="repos"><li><a href="https://github.com/Ash4477/fyp_web" target="_blank" rel="noopener">fyp_web</a><span>2026</span></li><li><a href="https://github.com/Ash4477/fyp_backend" target="_blank" rel="noopener">fyp_backend</a><span>2025</span></li><li><a href="https://github.com/Ash4477/fyp_mobile" target="_blank" rel="noopener">fyp_mobile</a><span>2025</span></li></ul></details>
+      <details class="grp"><summary><span>Full-stack apps and tools<span class="n">7</span></span></summary><ul class="repos"><li><a href="https://github.com/Ash4477/multivendor-ecomm-proj" target="_blank" rel="noopener">multivendor-ecomm-proj</a><span>2025</span></li><li><a href="https://github.com/Ash4477/log-analyzer" target="_blank" rel="noopener">log-analyzer</a><span>2026</span></li><li><a href="https://github.com/Ash4477/TaskManager-SpringBoot" target="_blank" rel="noopener">TaskManager-SpringBoot</a><span>2026</span></li><li><a href="https://github.com/Ash4477/pokemon-game-server" target="_blank" rel="noopener">pokemon-game-server</a><span>2025</span></li><li><a href="https://github.com/Ash4477/bytewise-fellowship" target="_blank" rel="noopener">bytewise-fellowship</a><span>2024</span></li><li><a href="https://github.com/Ash4477/web-dev-comsicon" target="_blank" rel="noopener">web-dev-comsicon</a><span>2025</span></li><li><a href="https://github.com/Ash4477/currency-convertor-js" target="_blank" rel="noopener">currency-convertor-js</a><span>2024</span></li></ul></details>
+      <details class="grp"><summary><span>The Odin Project<span class="n">22</span></span></summary><p class="gnote">Coursework from The Odin Project’s web development path.</p><ul class="repos"><li><a href="https://github.com/Ash4477/odin-recipes" target="_blank" rel="noopener">odin-recipes</a><span>2024</span></li><li><a href="https://github.com/Ash4477/odin-landing-page" target="_blank" rel="noopener">odin-landing-page</a><span>2024</span></li><li><a href="https://github.com/Ash4477/odin-Rock-Paper-Scissors" target="_blank" rel="noopener">odin-Rock-Paper-Scissors</a><span>2024</span></li><li><a href="https://github.com/Ash4477/odin-Etch-a-Sketch" target="_blank" rel="noopener">odin-Etch-a-Sketch</a><span>2024</span></li><li><a href="https://github.com/Ash4477/odin-Calculator" target="_blank" rel="noopener">odin-Calculator</a><span>2024</span></li><li><a href="https://github.com/Ash4477/odin-Signup-Form" target="_blank" rel="noopener">odin-Signup-Form</a><span>2024</span></li><li><a href="https://github.com/Ash4477/odin-restaurant-page" target="_blank" rel="noopener">odin-restaurant-page</a><span>2024</span></li><li><a href="https://github.com/Ash4477/odin-library" target="_blank" rel="noopener">odin-library</a><span>2024</span></li><li><a href="https://github.com/Ash4477/odin-tic-tac-toe" target="_blank" rel="noopener">odin-tic-tac-toe</a><span>2024</span></li><li><a href="https://github.com/Ash4477/odin-music-dashboard" target="_blank" rel="noopener">odin-music-dashboard</a><span>2024</span></li><li><a href="https://github.com/Ash4477/odin-cv-application" target="_blank" rel="noopener">odin-cv-application</a><span>2025</span></li><li><a href="https://github.com/Ash4477/odin-todoList" target="_blank" rel="noopener">odin-todoList</a><span>2025</span></li><li><a href="https://github.com/Ash4477/odin-webpack-template" target="_blank" rel="noopener">odin-webpack-template</a><span>2025</span></li><li><a href="https://github.com/Ash4477/odin-weather-app" target="_blank" rel="noopener">odin-weather-app</a><span>2025</span></li><li><a href="https://github.com/Ash4477/odin-memory-alternate-version" target="_blank" rel="noopener">odin-memory-alternate-version</a><span>2025</span></li><li><a href="https://github.com/Ash4477/odin-memory-card" target="_blank" rel="noopener">odin-memory-card</a><span>2025</span></li><li><a href="https://github.com/Ash4477/odin-shopping-cart" target="_blank" rel="noopener">odin-shopping-cart</a><span>2025</span></li><li><a href="https://github.com/Ash4477/odin-shopping-cart-backend" target="_blank" rel="noopener">odin-shopping-cart-backend</a><span>2025</span></li><li><a href="https://github.com/Ash4477/odin-pokemon-server-2" target="_blank" rel="noopener">odin-pokemon-server-2</a><span>2025</span></li><li><a href="https://github.com/Ash4477/odin-basic-infosite" target="_blank" rel="noopener">odin-basic-infosite</a><span>2025</span></li><li><a href="https://github.com/Ash4477/odin-mini-message-board" target="_blank" rel="noopener">odin-mini-message-board</a><span>2025</span></li><li><a href="https://github.com/Ash4477/TheOdinProject-Adil" target="_blank" rel="noopener">TheOdinProject-Adil</a><span>2024</span></li></ul></details>
+      <details class="grp"><summary><span>Early web projects<span class="n">14</span></span></summary><p class="gnote">Practice projects and exercises from learning HTML, CSS and JavaScript.</p><ul class="repos"><li><a href="https://github.com/Ash4477/Survey-Form-Project" target="_blank" rel="noopener">Survey-Form-Project</a><span>2024</span></li><li><a href="https://github.com/Ash4477/Product-Landing-Page-Project" target="_blank" rel="noopener">Product-Landing-Page-Project</a><span>2024</span></li><li><a href="https://github.com/Ash4477/Technical-Documentation-Project" target="_blank" rel="noopener">Technical-Documentation-Project</a><span>2024</span></li><li><a href="https://github.com/Ash4477/Christian-Bale-Tribute-Page-Project" target="_blank" rel="noopener">Christian-Bale-Tribute-Page-Project</a><span>2024</span></li><li><a href="https://github.com/Ash4477/Palindrome-Checker-Project" target="_blank" rel="noopener">Palindrome-Checker-Project</a><span>2024</span></li><li><a href="https://github.com/Ash4477/QR-Code-Component" target="_blank" rel="noopener">QR-Code-Component</a><span>2024</span></li><li><a href="https://github.com/Ash4477/Personal-Portfolio-Project" target="_blank" rel="noopener">Personal-Portfolio-Project</a><span>2024</span></li><li><a href="https://github.com/Ash4477/Portfolio-2.0" target="_blank" rel="noopener">Portfolio-2.0</a><span>2024</span></li><li><a href="https://github.com/Ash4477/Learning-JavaScript" target="_blank" rel="noopener">Learning-JavaScript</a><span>2024</span></li><li><a href="https://github.com/Ash4477/fcc-DynamicProgramming" target="_blank" rel="noopener">fcc-DynamicProgramming</a><span>2024</span></li><li><a href="https://github.com/Ash4477/Web-Technologies" target="_blank" rel="noopener">Web-Technologies</a><span>2024</span></li><li><a href="https://github.com/Ash4477/javascript-exercises" target="_blank" rel="noopener">javascript-exercises (fork)</a><span>2024</span></li><li><a href="https://github.com/Ash4477/css-exercises" target="_blank" rel="noopener">css-exercises (fork)</a><span>2024</span></li><li><a href="https://github.com/Ash4477/JavaScript30" target="_blank" rel="noopener">JavaScript30 (fork)</a><span>2024</span></li></ul></details>
+      <details class="grp"><summary><span>Java and Python programs<span class="n">8</span></span></summary><ul class="repos"><li><a href="https://github.com/Ash4477/Movie-Browser-Java" target="_blank" rel="noopener">Movie-Browser-Java</a><span>2024</span></li><li><a href="https://github.com/Ash4477/Space-Shooter-Game-Project" target="_blank" rel="noopener">Space-Shooter-Game-Project</a><span>2024</span></li><li><a href="https://github.com/Ash4477/Snake-Game-Java" target="_blank" rel="noopener">Snake-Game-Java</a><span>2024</span></li><li><a href="https://github.com/Ash4477/Ping-Pong-Game-Java" target="_blank" rel="noopener">Ping-Pong-Game-Java</a><span>2024</span></li><li><a href="https://github.com/Ash4477/Airline-Reservation-System-Java-Management-Project" target="_blank" rel="noopener">Airline-Reservation-System-Java-Management-Project</a><span>2023</span></li><li><a href="https://github.com/Ash4477/Calculator-App-JAVA" target="_blank" rel="noopener">Calculator-App-JAVA</a><span>2023</span></li><li><a href="https://github.com/Ash4477/Clock-App-Java" target="_blank" rel="noopener">Clock-App-Java</a><span>2023</span></li><li><a href="https://github.com/Ash4477/Unbeatable-Tic-Tac-Toe" target="_blank" rel="noopener">Unbeatable-Tic-Tac-Toe</a><span>2022</span></li></ul></details>
+      <details class="grp"><summary><span>Interview practice<span class="n">2</span></span></summary><ul class="repos"><li><a href="https://github.com/Ash4477/15-Days-Of-Leetcode-Challenge" target="_blank" rel="noopener">15-Days-Of-Leetcode-Challenge</a><span>2026</span></li><li><a href="https://github.com/Ash4477/Leetcode-Solutions" target="_blank" rel="noopener">Leetcode-Solutions</a><span>2024</span></li></ul></details>
+      <details class="grp"><summary><span>Mobile and Rust<span class="n">4</span></span></summary><ul class="repos"><li><a href="https://github.com/Ash4477/Learn_Flutter" target="_blank" rel="noopener">Learn_Flutter</a><span>2025</span></li><li><a href="https://github.com/Ash4477/GDSC-Flutter" target="_blank" rel="noopener">GDSC-Flutter</a><span>2023</span></li><li><a href="https://github.com/Ash4477/Rust-Bootcamp-RiseInXGDSC" target="_blank" rel="noopener">Rust-Bootcamp-RiseInXGDSC</a><span>2024</span></li><li><a href="https://github.com/Ash4477/Rusty-Store-Inventory-Management-System" target="_blank" rel="noopener">Rusty-Store-Inventory-Management-System</a><span>2024</span></li></ul></details>
+      <details class="grp"><summary><span>DevOps coursework<span class="n">3</span></span></summary><ul class="repos"><li><a href="https://github.com/Ash4477/DevOps-Assignment-1" target="_blank" rel="noopener">DevOps-Assignment-1</a><span>2025</span></li><li><a href="https://github.com/Ash4477/devops-assignment2" target="_blank" rel="noopener">devops-assignment2</a><span>2025</span></li><li><a href="https://github.com/Ash4477/devops-assignment-3-part-1" target="_blank" rel="noopener">devops-assignment-3-part-1</a><span>2025</span></li></ul></details>
+      <details class="grp"><summary><span>AI and data<span class="n">2</span></span></summary><ul class="repos"><li><a href="https://github.com/Ash4477/Artificial-Intelligence" target="_blank" rel="noopener">Artificial-Intelligence</a><span>2024</span></li><li><a href="https://github.com/Ash4477/Data_Mining_Project" target="_blank" rel="noopener">Data_Mining_Project</a><span>2024</span></li></ul></details>
+      <details class="grp"><summary><span>Open source and practice<span class="n">7</span></span></summary><p class="gnote">Forks, Hacktoberfest and Git practice repositories.</p><ul class="repos"><li><a href="https://github.com/Ash4477/Hacktoberfest22_IEEE" target="_blank" rel="noopener">Hacktoberfest22_IEEE (fork)</a><span>2022</span></li><li><a href="https://github.com/Ash4477/Hall-of-Open-Source" target="_blank" rel="noopener">Hall-of-Open-Source (fork)</a><span>2022</span></li><li><a href="https://github.com/Ash4477/hf-2022" target="_blank" rel="noopener">hf-2022</a><span>2022</span></li><li><a href="https://github.com/Ash4477/hello_github" target="_blank" rel="noopener">hello_github</a><span>2022</span></li><li><a href="https://github.com/Ash4477/git_test" target="_blank" rel="noopener">git_test</a><span>2024</span></li><li><a href="https://github.com/Ash4477/LocalRepo" target="_blank" rel="noopener">LocalRepo</a><span>2024</span></li><li><a href="https://github.com/Ash4477/demo-proj" target="_blank" rel="noopener">demo-proj</a><span>2024</span></li></ul></details>
+      <details class="grp"><summary><span>Collaborations<span class="n">1</span></span></summary><p class="gnote">A repository that lives on a collaborator’s account.</p><ul class="repos"><li><a href="https://github.com/Faze789/scholar_app" target="_blank" rel="noopener">scholar_app (Faze789)</a><span>2026</span></li></ul></details>
+      <p class="more">Everything above is also on <a href="https://github.com/Ash4477" target="_blank" rel="noopener">github.com/Ash4477</a>. Work for employers and clients stays private.</p>
+    </div>
+  </div>
+</section>
+
+<section class="band b-teal" id="skills">
+  <div class="in">
+    <h2>Skills</h2>
+    <div class="skills">
+      <div><h3>Languages</h3><p>TypeScript, JavaScript, Python, Java, Dart, C++</p></div>
+      <div><h3>Frontend</h3><p>React, Next.js, React Native, Expo, Redux, Context API, TanStack Query, React Router, Tailwind CSS, MUI, Ant Design, Bootstrap, shadcn/ui, Flutter, Vite, Webpack, GSAP, Three.js, Chart.js</p></div>
+      <div><h3>Backend and data</h3><p>Node.js, Express.js, Socket.IO, REST APIs, Webhooks, Supabase Edge Functions, PostgreSQL, MongoDB, MySQL, Firebase, Laravel, Zod</p></div>
+      <div><h3>Cloud and DevOps</h3><p>AWS (EC2, Elastic Beanstalk), Docker, GitHub Actions, CI/CD, Kubernetes, Jenkins, Vercel, Netlify</p></div>
+      <div><h3>AI</h3><p>LLM API integration, prompt engineering, computer vision</p></div>
+      <div><h3>Practices and tools</h3><p>Git, Jest, Vitest, React Testing Library, Deno, Postman, Sentry, PostHog, Stripe, Twilio, Resend, Figma, Canva, Agile/Scrum, code review</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="band b-lemon" id="contact">
+  <div class="in">
+    <h2>Let’s build something.</h2>
+    <a class="mail" href="mailto:adilferoze321@gmail.com">adilferoze321@gmail.com</a>
+    <div class="mailrow">
+      <button class="btn fill" id="copyMail" type="button">Copy email address</button>
+      <span id="copyMsg" role="status"></span>
+    </div>
+    <p style="margin-top:22px">Open to full-stack roles and product-minded teams. Email is the fastest way to reach me.</p>
+    <div class="elsewhere">
+      <a href="https://github.com/Ash4477" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://linkedin.com/in/adil-feroze-242a99253" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://itch.io/profile/adil-feroze" target="_blank" rel="noopener">itch.io</a>
+      <a href="https://leetcode.com/u/adilferoze321/" target="_blank" rel="noopener">LeetCode</a>
+    </div>
+  </div>
+</section>
+</main>
+<footer>© 2026 Adil Feroze, Islamabad, Pakistan.</footer>
+
+<dialog id="d-bb-edu" aria-labelledby="t-bb-edu" closedby="any"><span class="dcover" data-seed="BB Edu" data-c="8" data-r="4"></span><div class="dbody"><div class="dhead"><h3 id="t-bb-edu">BB Edu</h3><form method="dialog"><button class="btn" autofocus>Close</button></form></div><p class="dmeta">Work at Devsinc, Nov 2025 to now</p><p>A two-sided B2B marketplace that staffs educators, used by 2,000+ people.</p><ul><li>Concurrency-safe wallet and billing in PostgreSQL, using transaction locks to stop race conditions in simultaneous deductions and claim checks.</li><li>35–50% faster API and UI on feeds with 10,000+ records, through redesigned queries, pagination and indexed PL/pgSQL procedures.</li><li>Twilio SMS, Resend email and Expo push pipelines on Supabase Edge Functions, cutting claim latency by about 30%.</li><li>Row-Level Security across 20+ views and tables for tenant isolation, plus payroll and invoicing with seniority tiers, surge multipliers and weekly ledger exports.</li></ul><div class="stack"><span>Next.js</span><span>React Native</span><span>Expo</span><span>TypeScript</span><span>Supabase</span><span>PostgreSQL</span><span>Jest</span><span>Deno</span></div><p class="note">This is employer work, so the code is private. I’m happy to walk through the architecture in an interview.</p></div></dialog>
+<dialog id="d-secure-nest" aria-labelledby="t-secure-nest" closedby="any"><span class="dcover" data-seed="Secure Nest" data-c="8" data-r="4"></span><div class="dbody"><div class="dhead"><h3 id="t-secure-nest">Secure Nest</h3><form method="dialog"><button class="btn" autofocus>Close</button></form></div><p class="dmeta">Final year project, COMSATS, Nov 2024 to Dec 2025</p><p>A smart residential community platform: an admin dashboard, a mobile app and a real-time backend.</p><ul><li>Admin dashboard in Next.js 15 (App Router) with React 19, TypeScript, Tailwind CSS 4, shadcn/ui and Radix UI. Server Actions call the backend, and Socket.IO drives the real-time screens.</li><li>More than 12 modules across the platform, including analytics, user management, chat, a surveillance screen with a live alert feed, visitor logs, a safety map, maintenance tickets as a table and a kanban board, facility booking, billing, announcements and content moderation.</li><li>A Flutter and Dart mobile app and an Express.js backend, each in its own repository.</li><li>Computer vision for real-time threat detection, and generative AI that automates community communications.</li><li>A decoupled notification microservice, deployed on AWS with GitHub Actions for zero-downtime releases.</li></ul><div class="stack"><span>TypeScript</span><span>Next.js 15</span><span>React 19</span><span>Tailwind CSS</span><span>Flutter</span><span>Dart</span><span>Express.js</span><span>MongoDB</span><span>Socket.IO</span><span>AWS</span><span>Computer vision</span><span>LLM APIs</span></div><div class="dlinks"><a class="btn fill" href="https://fyp-web-nine-ochre.vercel.app" target="_blank" rel="noopener">Live admin dashboard</a><a class="btn" href="https://github.com/Ash4477/fyp_web" target="_blank" rel="noopener">Dashboard code</a><a class="btn" href="https://github.com/Ash4477/fyp_backend" target="_blank" rel="noopener">Backend code</a><a class="btn" href="https://github.com/Ash4477/fyp_mobile" target="_blank" rel="noopener">Mobile app code</a></div></div></dialog>
+<dialog id="d-multivendor" aria-labelledby="t-multivendor" closedby="any"><span class="dcover" data-seed="Multivendor e-commerce" data-c="8" data-r="4"></span><div class="dbody"><div class="dhead"><h3 id="t-multivendor">Multivendor e-commerce</h3><form method="dialog"><button class="btn" autofocus>Close</button></form></div><p class="dmeta">Full-stack project, 2025</p><p>A Dockerized marketplace with vendors, real-time updates and two payment gateways.</p><ul><li>Three roles (admin, vendor and customer) with JWT authentication.</li><li>Real-time orders, chat and notifications through a separate Socket.IO server.</li><li>Stripe and PayPal checkout on both the frontend and the backend.</li><li>React and Vite frontend, Express.js API, MongoDB Atlas, and all three services run together with Docker Compose.</li><li>Deployed to AWS EC2. A GitHub Actions workflow runs on every push to main, connects over SSH, pulls the code and rebuilds the containers.</li></ul><div class="stack"><span>React</span><span>Vite</span><span>Node.js</span><span>Express.js</span><span>Socket.IO</span><span>MongoDB Atlas</span><span>Docker</span><span>Stripe</span><span>PayPal</span><span>AWS EC2</span><span>GitHub Actions</span></div><div class="dlinks"><a class="btn fill" href="https://github.com/Ash4477/multivendor-ecomm-proj" target="_blank" rel="noopener">Repository</a></div></div></dialog>
+<dialog id="d-log-analyzer" aria-labelledby="t-log-analyzer" closedby="any"><span class="dcover" data-seed="Log Analyzer" data-c="8" data-r="4"></span><div class="dbody"><div class="dhead"><h3 id="t-log-analyzer">Log Analyzer</h3><form method="dialog"><button class="btn" autofocus>Close</button></form></div><p class="dmeta">Tooling project, May 2026</p><p>A command-line log parser and a dashboard for what it finds.</p><ul><li>A stream-based Node.js CLI that reads very large log files with a small memory footprint.</li><li>It handles malformed lines, mixed units and injected JSON without dropping data.</li><li>A generator script builds a 100,000-line test log with deliberate edge cases.</li><li>Results are written to JSON and shown in a Vite and React dashboard with Tailwind CSS and Recharts, covered by Vitest and React Testing Library tests.</li></ul><div class="stack"><span>TypeScript</span><span>Node.js</span><span>React</span><span>Vite</span><span>Tailwind CSS</span><span>Recharts</span><span>Vitest</span></div><div class="dlinks"><a class="btn fill" href="https://github.com/Ash4477/log-analyzer" target="_blank" rel="noopener">Repository</a></div></div></dialog>
+<dialog id="d-scholar-app" aria-labelledby="t-scholar-app" closedby="any"><span class="dcover" data-seed="Scholar App backend" data-c="8" data-r="4"></span><div class="dbody"><div class="dhead"><h3 id="t-scholar-app">Scholar App backend</h3><form method="dialog"><button class="btn" autofocus>Close</button></form></div><p class="dmeta">Collaboration, 2026</p><p>A Flask API that predicts admissions and matches students to scholarships.</p><ul><li>Admission-prediction models for 9 Pakistani universities, built with scikit-learn and TensorFlow.</li><li>REST endpoints for scholarship matching and university recommendations.</li><li>Fee structures scraped from university websites with BeautifulSoup and Selenium, plus a university events listing.</li><li>Data preparation with pandas.</li></ul><div class="stack"><span>Python</span><span>Flask</span><span>scikit-learn</span><span>TensorFlow</span><span>pandas</span><span>BeautifulSoup</span><span>Selenium</span></div><div class="dlinks"><a class="btn fill" href="https://github.com/Faze789/scholar_app" target="_blank" rel="noopener">Repository</a></div><p class="note">This repository lives on a collaborator’s GitHub account, Faze789.</p></div></dialog>
+<dialog id="d-client-builds" aria-labelledby="t-client-builds" closedby="any"><span class="dcover" data-seed="Client builds" data-c="8" data-r="4"></span><div class="dbody"><div class="dhead"><h3 id="t-client-builds">Client builds</h3><form method="dialog"><button class="btn" autofocus>Close</button></form></div><p class="dmeta">Work at Elite Fusion, Aug to Nov 2025</p><p>MERN and Next.js applications for 5+ clients.</p><ul><li>Responsive UI through to REST API integration, with load times down 25%.</li><li>Modular architecture, Git workflows and CI/CD cut post-deployment bugs by 20%.</li><li>95% on-time sprint completion.</li></ul><div class="stack"><span>MongoDB</span><span>Express.js</span><span>React</span><span>Node.js</span><span>Next.js</span></div><p class="note">Client work, so the code is private.</p></div></dialog>
+<dialog id="d-bytewise" aria-labelledby="t-bytewise" closedby="any"><span class="dcover" data-seed="Bytewise Fellowship repo" data-c="8" data-r="4"></span><div class="dbody"><div class="dhead"><h3 id="t-bytewise">Bytewise Fellowship repo</h3><form method="dialog"><button class="btn" autofocus>Close</button></form></div><p class="dmeta">MERN track, Mar to Sep 2025</p><p>Every task and project from the MERN track.</p><ul><li>128 commits across the fellowship, with a live deployment on Vercel.</li><li>Named a Top Performer (Bronze Fellow) among 30+ peers.</li></ul><div class="stack"><span>JavaScript</span><span>MERN</span></div><div class="dlinks"><a class="btn fill" href="https://github.com/Ash4477/bytewise-fellowship" target="_blank" rel="noopener">Repository</a><a class="btn" href="https://bytewise-fellowship-seven.vercel.app" target="_blank" rel="noopener">Live site</a></div></div></dialog>
+<dialog id="d-taskmanager" aria-labelledby="t-taskmanager" closedby="any"><span class="dcover" data-seed="Task Manager" data-c="8" data-r="4"></span><div class="dbody"><div class="dhead"><h3 id="t-taskmanager">Task Manager</h3><form method="dialog"><button class="btn" autofocus>Close</button></form></div><p class="dmeta">Spring Boot, May 2026</p><p>A small Spring Boot project with a Task entity and controller.</p><ul><li>Maven wrapper project with a TaskController and a Task entity, written in Java.</li></ul><div class="stack"><span>Java</span><span>Spring Boot</span><span>Maven</span></div><div class="dlinks"><a class="btn fill" href="https://github.com/Ash4477/TaskManager-SpringBoot" target="_blank" rel="noopener">Repository</a></div></div></dialog>
+<dialog id="d-leetcode" aria-labelledby="t-leetcode" closedby="any"><span class="dcover" data-seed="LeetCode in Java" data-c="8" data-r="4"></span><div class="dbody"><div class="dhead"><h3 id="t-leetcode">LeetCode in Java</h3><form method="dialog"><button class="btn" autofocus>Close</button></form></div><p class="dmeta">Interview practice, 2024 to 2026</p><p>Solutions kept one folder per problem.</p><ul><li>Covers problems such as Two Sum, 3Sum, Container With Most Water, Longest Consecutive Sequence and Binary Tree Maximum Path Sum.</li><li>100+ LeetCode problems solved overall.</li></ul><div class="stack"><span>Java</span><span>Algorithms</span><span>Data structures</span></div><div class="dlinks"><a class="btn fill" href="https://leetcode.com/u/adilferoze321/" target="_blank" rel="noopener">LeetCode profile</a><a class="btn" href="https://github.com/Ash4477/15-Days-Of-Leetcode-Challenge" target="_blank" rel="noopener">15 Days of LeetCode</a><a class="btn" href="https://github.com/Ash4477/Leetcode-Solutions" target="_blank" rel="noopener">More solutions</a></div></div></dialog>
+<dialog id="d-devops" aria-labelledby="t-devops" closedby="any"><span class="dcover" data-seed="DevOps coursework" data-c="8" data-r="4"></span><div class="dbody"><div class="dhead"><h3 id="t-devops">DevOps coursework</h3><form method="dialog"><button class="btn" autofocus>Close</button></form></div><p class="dmeta">Assignments, 2025</p><p>Three university DevOps assignments.</p><ul><li>Assignment 1, assignment 2, and part 1 of assignment 3.</li></ul><div class="stack"><span>DevOps</span><span>CI/CD</span></div><div class="dlinks"><a class="btn fill" href="https://github.com/Ash4477/DevOps-Assignment-1" target="_blank" rel="noopener">Assignment 1</a><a class="btn" href="https://github.com/Ash4477/devops-assignment2" target="_blank" rel="noopener">Assignment 2</a><a class="btn" href="https://github.com/Ash4477/devops-assignment-3-part-1" target="_blank" rel="noopener">Assignment 3, part 1</a></div></div></dialog>
+<dialog id="d-pokemon" aria-labelledby="t-pokemon" closedby="any"><span class="dcover" data-seed="Pokémon game server" data-c="8" data-r="4"></span><div class="dbody"><div class="dhead"><h3 id="t-pokemon">Pokémon game server</h3><form method="dialog"><button class="btn" autofocus>Close</button></form></div><p class="dmeta">Node.js, 2025</p><p>A small Node.js server for a Pokémon game, with a Dockerfile.</p><ul><li>A second version of the server is in odin-pokemon-server-2.</li></ul><div class="stack"><span>JavaScript</span><span>Node.js</span><span>Docker</span></div><div class="dlinks"><a class="btn fill" href="https://github.com/Ash4477/pokemon-game-server" target="_blank" rel="noopener">Repository</a><a class="btn" href="https://github.com/Ash4477/odin-pokemon-server-2" target="_blank" rel="noopener">Second version</a></div></div></dialog>
+<dialog id="d-odin" aria-labelledby="t-odin" closedby="any"><span class="dcover" data-seed="The Odin Project path" data-c="8" data-r="4"></span><div class="dbody"><div class="dhead"><h3 id="t-odin">The Odin Project path</h3><form method="dialog"><button class="btn" autofocus>Close</button></form></div><p class="dmeta">Web fundamentals, 2024 to 2025</p><p>22 repositories of coursework, from a calculator to a shopping cart with its own backend.</p><ul><li>A React and Vite shopping cart with a separate backend repository.</li><li>A weather app, two versions of a memory card game, a to-do list, a library app, a music dashboard and a CV builder.</li><li>Earlier projects: Rock Paper Scissors, Etch a Sketch, a calculator, a sign-up form and a restaurant page.</li><li>A Webpack template, a message board and an info site on Express.</li></ul><div class="stack"><span>JavaScript</span><span>React</span><span>Vite</span><span>Webpack</span><span>Express.js</span></div><div class="dlinks"><a class="btn fill" href="https://github.com/Ash4477/odin-shopping-cart" target="_blank" rel="noopener">Shopping cart</a><a class="btn" href="https://github.com/Ash4477/odin-weather-app" target="_blank" rel="noopener">Weather app</a><a class="btn" href="https://github.com/Ash4477/odin-memory-card" target="_blank" rel="noopener">Memory card</a><a class="btn" href="https://github.com/Ash4477/odin-todoList" target="_blank" rel="noopener">To-do list</a></div></div></dialog>
+<dialog id="d-java-apps" aria-labelledby="t-java-apps" closedby="any"><span class="dcover" data-seed="Java desktop apps" data-c="8" data-r="4"></span><div class="dbody"><div class="dhead"><h3 id="t-java-apps">Java desktop apps</h3><form method="dialog"><button class="btn" autofocus>Close</button></form></div><p class="dmeta">Java, 2023 to 2024</p><p>Games and small management apps with Java GUIs.</p><ul><li>Movie Browser: search, filter and view details of movies, and manage a watch list.</li><li>Space Shooter, a 2D top-down game, plus Snake and Ping Pong.</li><li>Airline Reservation System, a management program that simulates airline reservations, plus a calculator and a clock.</li></ul><div class="stack"><span>Java</span><span>Swing GUI</span></div><div class="dlinks"><a class="btn fill" href="https://github.com/Ash4477/Movie-Browser-Java" target="_blank" rel="noopener">Movie Browser</a><a class="btn" href="https://github.com/Ash4477/Space-Shooter-Game-Project" target="_blank" rel="noopener">Space Shooter</a><a class="btn" href="https://github.com/Ash4477/Airline-Reservation-System-Java-Management-Project" target="_blank" rel="noopener">Airline Reservation</a></div></div></dialog>
+<dialog id="d-tictactoe" aria-labelledby="t-tictactoe" closedby="any"><span class="dcover" data-seed="Unbeatable Tic-Tac-Toe" data-c="8" data-r="4"></span><div class="dbody"><div class="dhead"><h3 id="t-tictactoe">Unbeatable Tic-Tac-Toe</h3><form method="dialog"><button class="btn" autofocus>Close</button></form></div><p class="dmeta">Python, my first project, 2022</p><p>My very first coding project, with a multiplayer mode and an unbeatable mode.</p><div class="stack"><span>Python</span></div><div class="dlinks"><a class="btn fill" href="https://github.com/Ash4477/Unbeatable-Tic-Tac-Toe" target="_blank" rel="noopener">Repository</a></div></div></dialog>
+<dialog id="d-rust-flutter" aria-labelledby="t-rust-flutter" closedby="any"><span class="dcover" data-seed="Rust and Flutter practice" data-c="8" data-r="4"></span><div class="dbody"><div class="dhead"><h3 id="t-rust-flutter">Rust and Flutter practice</h3><form method="dialog"><button class="btn" autofocus>Close</button></form></div><p class="dmeta">Learning, 2023 to 2025</p><p>A Rust bootcamp, a Rust inventory system and Flutter learning repos.</p><ul><li>Rusty Store Inventory Management System, written in Rust.</li><li>Rust Bootcamp repository from the RiseInX and GDSC bootcamp.</li><li>Learn Flutter and GDSC Flutter practice repositories.</li></ul><div class="stack"><span>Rust</span><span>Flutter</span><span>Dart</span></div><div class="dlinks"><a class="btn fill" href="https://github.com/Ash4477/Rusty-Store-Inventory-Management-System" target="_blank" rel="noopener">Inventory system</a><a class="btn" href="https://github.com/Ash4477/Rust-Bootcamp-RiseInXGDSC" target="_blank" rel="noopener">Rust bootcamp</a><a class="btn" href="https://github.com/Ash4477/Learn_Flutter" target="_blank" rel="noopener">Learn Flutter</a></div></div></dialog>
+<dialog id="d-early-web" aria-labelledby="t-early-web" closedby="any"><span class="dcover" data-seed="Early web projects" data-c="8" data-r="4"></span><div class="dbody"><div class="dhead"><h3 id="t-early-web">Early web projects</h3><form method="dialog"><button class="btn" autofocus>Close</button></form></div><p class="dmeta">HTML, CSS and JavaScript, 2024</p><p>Landing pages, a survey form, a tribute page and a palindrome checker.</p><ul><li>Product landing page, survey form, technical documentation page, tribute page and QR code component.</li><li>A palindrome checker, a currency converter and dynamic programming exercises.</li><li>Two earlier personal portfolio sites.</li></ul><div class="stack"><span>HTML</span><span>CSS</span><span>JavaScript</span></div><div class="dlinks"><a class="btn fill" href="https://github.com/Ash4477/Portfolio-2.0" target="_blank" rel="noopener">Portfolio 2.0</a><a class="btn" href="https://github.com/Ash4477/currency-convertor-js" target="_blank" rel="noopener">Currency converter</a></div></div></dialog>
+
+<script>
+(function(){
+  var C=['plum','lilac','lemon','teal','white'];
+  function rng(s){var a=2166136261;for(var i=0;i<s.length;i++){a^=s.charCodeAt(i);a=Math.imul(a,16777619);}
+    return function(){a+=0x6D2B79F5;var t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+  function art(seed,c,r){
+    var R=rng(seed),o='<svg viewBox="0 0 '+c*100+' '+r*100+'" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">';
+    for(var j=0;j<r;j++)for(var i=0;i<c;i++){
+      var x=i*100,y=j*100,a=(R()*5)|0,b=(a+1+((R()*4)|0))%5,t=(R()*6)|0,rot=((R()*4)|0)*90,g;
+      g='<g class="tile" style="--i:'+(j*c+i)+'"><rect x="'+x+'" y="'+y+'" width="100" height="100" class="'+C[a]+'"/><g class="'+C[b]+'" transform="rotate('+rot+' '+(x+50)+' '+(y+50)+')">';
+      if(t===0)g+='<circle cx="'+(x+50)+'" cy="'+(y+50)+'" r="40"/>';
+      else if(t===1)g+='<path d="M'+x+' '+(y+100)+'A100 100 0 0 1 '+(x+100)+' '+y+'V'+(y+100)+'Z"/>';
+      else if(t===2)g+='<path d="M'+x+' '+(y+75)+'a50 50 0 0 1 100 0Z"/>';
+      else if(t===3)g+='<path d="M'+x+' '+(y+100)+'H'+(x+100)+'L'+x+' '+y+'Z"/>';
+      else if(t===4)g+='<rect x="'+(x+20)+'" y="'+(y+20)+'" width="60" height="60"/>';
+      else g+='<rect x="'+x+'" y="'+(y+20)+'" width="100" height="22"/><rect x="'+x+'" y="'+(y+58)+'" width="100" height="22"/>';
+      o+=g+'</g></g>';
+    }
+    return o+'</svg>';
+  }
+  [].forEach.call(document.querySelectorAll('[data-seed]'),function(el){
+    el.innerHTML=art(el.getAttribute('data-seed'),+el.getAttribute('data-c'),+el.getAttribute('data-r'));
+  });
+
+  var grid=document.getElementById('grid'),count=document.getElementById('count');
+  function updateCount(){
+    var all=grid.querySelectorAll('.proj'),v=[].filter.call(all,function(e){return e.offsetParent!==null;}).length;
+    count.textContent='Showing '+v+' of '+all.length+' projects. Select one for details.';
+  }
+  document.querySelector('.filters').addEventListener('change',updateCount);updateCount();
+
+  grid.addEventListener('click',function(e){
+    var b=e.target.closest('.proj');if(!b)return;
+    var d=document.getElementById(b.getAttribute('data-dlg'));if(d&&d.showModal)d.showModal();
+  });
+  [].forEach.call(document.querySelectorAll('dialog'),function(d){
+    d.addEventListener('click',function(e){if(e.target===d)d.close();});
+  });
+
+  var hero=document.getElementById('heroArt'),n=0;
+  function shuffle(){hero.innerHTML=art('adil feroze '+n,4,4);n++;}
+  hero.addEventListener('click',shuffle);shuffle();
+
+  var cm=document.getElementById('copyMail'),msg=document.getElementById('copyMsg');
+  cm.addEventListener('click',function(){
+    function ok(){msg.textContent='Copied.';}
+    function fail(){var r=document.createRange();r.selectNodeContents(document.querySelector('.mail'));var s=getSelection();s.removeAllRanges();s.addRange(r);msg.textContent='Address selected. Copy it with your keyboard.';}
+    try{navigator.clipboard.writeText('adilferoze321@gmail.com').then(ok,fail);}catch(x){fail();}
+  });
+})();
+</script>
+</body>
+</html>
